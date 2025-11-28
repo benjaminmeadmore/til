@@ -73,7 +73,7 @@ The route table determines whether a subnet is public or private:
 - Resources only have private IPs
 - Use for: Application servers, databases, internal services
 
-**Key Point**: A subnet is NOT inherently public or private - it's the route table configuration that determines this.
+**Key Point**: A subnet is not inherently public or private - it's the route table configuration that determines this.
 
 ## availability zones
 
@@ -84,8 +84,8 @@ The route table determines whether a subnet is public or private:
 
 ## easy mistakes
 
-Public subnets need auto-assign public IPs enabled AND a route to IGW
-NAT Gateway costs are exorbitatnt: will run you ~$32/month per AZ + data transfer fees
-Kubernetes/ECS can consume IPs rapidly (pod/task per IP) so plan accordingly
-Cross AZ costs are $0.01-0.02 per GB
-VPC peering requires non-overlapping CIDR blocks across VPCs
+- Public subnets need auto-assign public IPs enabled AND a route to IGW
+- NAT Gateway costs are exorbitatnt: will run you ~$32/month per AZ + data transfer fees
+- Kubernetes/ECS can consume IPs rapidly (pod/task per IP) so plan accordingly
+- Cross AZ costs are $0.01-0.02 per GB
+- VPC peering requires non-overlapping CIDR blocks across VPCs
