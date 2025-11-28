@@ -2,7 +2,9 @@
 
 ## subnets are vpc partitions
 
-A subnet (subnetwork) is a logical subdivision of an IP network. Subnets divide a larger network into smaller, manageable segments. In AWS, a subnet is a range of IP addresses in your VPC.
+A subnet (subnetwork) is a logical subdivision of an IP network. Subnets divide a larger network into smaller, manageable segments. In AWS, a subnet is a range of IP addresses in your VPC. 
+
+FYI, subnets can't communicate with non-routed networks.
 
 ## maths
 
@@ -82,15 +84,8 @@ The route table determines whether a subnet is public or private:
 
 ## easy mistakes
 
-1. **Auto-assign public IP**: Public subnets need this enabled AND a route to IGW
-2. **NAT Gateway costs**: Runs ~$32/month per AZ + data transfer fees
-3. **IP exhaustion**: Kubernetes/ECS can consume IPs rapidly (pod/task per IP)
-4. **Cross-AZ traffic**: Costs $0.01-0.02 per GB
-5. **VPC peering**: Requires non-overlapping CIDR blocks across VPCs
-
-## infosec concerns
-
-- **Network ACLs (NACLs)**: Stateless firewall at subnet level
-- **Security Groups**: Stateful firewall at resource level
-- **Best practice**: Use Security Groups primarily, NACLs for additional defense
-- **Implicit deny**: Subnets can't communicate with non-routed networks
+Public subnets need auto-assign public IPs enabled AND a route to IGW
+NAT Gateway costs are exorbitatnt: will run you ~$32/month per AZ + data transfer fees
+Kubernetes/ECS can consume IPs rapidly (pod/task per IP) so plan accordingly
+Cross AZ costs are $0.01-0.02 per GB
+VPC peering requires non-overlapping CIDR blocks across VPCs
